@@ -1,0 +1,3 @@
+192.168.1.100/admin/login
+125.98.45.123/secure/update
+203.142.67.89/bank/verify

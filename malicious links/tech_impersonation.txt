@@ -1,0 +1,5 @@
+microsoft-security-update.review
+google-account-verify.country
+facebook-security-check.tk
+apple-id-confirmation.ml
+instagram-verification-required.ga
