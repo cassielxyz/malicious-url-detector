@@ -9,34 +9,35 @@ A comprehensive cybersecurity tool that uses advanced machine learning, IP analy
 ## 📁 Project Structure
 
 malicious-url-detector/
-├── url_detector.py # 🚀 Main detector script (86KB)
-├── requirements.txt # 📦 Python dependencies
-├── README.md # 📖 This documentation
-├── .gitignore # 🚫 Git ignore rules
-├── maliciouslinks.csv # 📊 Analysis results (auto-generated)
-├── organize.bat # 🔧 Project organizer script
-├── data/ # 📂 Training datasets
-│ ├── comprehensive_training.csv
-│ ├── sample_dataset.csv
-│ └── training_sample.csv
-├── docs/ # 📚 Documentation
-│ └── additional_docs.md
-├── scripts/ # 🛠️ Utility scripts
-│ ├── setup.py
-│ └── test.py
-├── logs/ # 📋 Log files
-│ └── debug.log
-├── models/ # 🤖 ML models
-│ └── xgboost_model.json
-├── notebooks/ # 📓 Jupyter notebooks
-│ └── malicious_url_analysis.ipynb
-├── output/ # 📤 Generated outputs
-└── malicious links/ # 🦠 Known malicious URL lists
-├── banking_phishing.txt
-├── ip_based_urls.txt
-├── mixed_suspicious.txt
-├── tech_impersonation.txt
-└── url_shorteners.txt
+├── url_detector.py (86KB)           # 🚀 Main script
+├── requirements.txt                 # 📦 Dependencies  
+├── README.md                        # 📖 Documentation
+├── .gitignore                       # 🚫 Git rules
+├── maliciouslinks.csv               # 📊 Results log
+├── organize.bat                     # 🔧 Organizer script
+├── data/                           # 📂 Training datasets
+│   ├── comprehensive_training.csv
+│   ├── sample_dataset.csv
+│   └── training_sample.csv
+├── docs/                           # 📚 Documentation
+│   └── additional_docs.md
+├── scripts/                        # 🛠️ Utility scripts
+│   ├── setup.py
+│   └── test.py
+├── logs/                           # 📋 Log files
+│   └── debug.log
+├── models/                         # 🤖 ML models
+│   └── xgboost_model.json
+├── notebooks/                      # 📓 Jupyter notebooks
+│   └── malicious_url_analysis.ipynb
+├── output/                         # 📤 Generated outputs
+└── malicious links/                # 🦠 Known malicious URLs
+    ├── banking_phishing.txt
+    ├── ip_based_urls.txt
+    ├── mixed_suspicious.txt
+    ├── tech_impersonation.txt
+    └── url_shorteners.txt
+
 
 
 ## 🎯 Key Features
