@@ -1,0 +1,8 @@
+| **Step** | **Command**                                                          | **Description**                                   |
+| -------- | -------------------------------------------------------------------- | ------------------------------------------------- |
+| 1        | `git clone https://github.com/cassielxyz/malicious-url-detector.git` | Clone the repository from GitHub                  |
+| 2        | `cd malicious-url-detector`                                          | Navigate into the cloned directory                |
+| 3        | `python -m venv venv`                                                | Create a new Python virtual environment           |
+| 4        | `venv\Scripts\activate`                                              | Activate the virtual environment (Windows)        |
+| 5        | `pip install -r requirements.txt`                                    | Install all required dependencies                 |
+| 6        | `python url_detector.py`                                             | Run the malicious URL detector program            |
