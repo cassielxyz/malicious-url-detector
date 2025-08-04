@@ -1,0 +1,25 @@
+        User Input (URL) 
+              ↓
+ URL Validation & Sanitization
+              ↓
+  Internet Accessibility Check
+              ↓
+  SSL Certificate Verification
+              ↓
+ Feature Extraction (50+ features)
+              ↓
+┌─────────────────┬─────────────────┐
+│  ML Classifier  │  VirusTotal API │
+│   (XGBoost)     │   Integration   │
+└─────────────────┴─────────────────┘
+              ↓
+   Malware Type Classification
+              ↓
+Threat Scoring & Risk Assessment
+              ↓
+    Final Verdict Generation
+              ↓
+┌─────────────────┬─────────────────┐
+│   CSV Storage   │  User Display   │
+│   & Logging     │   & Reports     │
+└─────────────────┴─────────────────┘
