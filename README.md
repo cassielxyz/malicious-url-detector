@@ -1,16 +1,29 @@
 <p align="center"><img src="assets/readme/hero.svg" alt="Malicious URL Detector banner" width="100%"></p>
 
-<p align="center"><strong>Machine-learning-assisted URL threat analysis for security learning, research, and defensive triage.</strong></p>
+<p align="center"><strong>A link-checking project that helps users and security learners understand why a URL may be suspicious before trusting or opening it.</strong></p>
 
 <p align="center"><code>Python</code> · <code>XGBoost</code> · <code>scikit-learn</code> · <code>tldextract</code> · <code>VirusTotal integration</code> · <code>SSL / IP signals</code></p>
 
 <p align="center"><img src="assets/readme/divider.svg" width="100%" alt="divider"></p>
 
+## Why this project is useful
+
+A suspicious link can look almost identical to a legitimate one. This project gives a user more evidence before they make a decision.
+
+It is useful for:
+
+- checking suspicious links received through email, chat or social media;
+- learning which URL patterns often appear in phishing or malicious links;
+- demonstrating how machine learning and rule-based signals can work together;
+- cybersecurity labs, academic projects and security-awareness demonstrations;
+- testing URL classification ideas without depending on a single blacklist;
+- creating a starting point for a browser extension, SOC utility or security dashboard.
+
+The detector is not meant to “prove” that a site is safe. Its value is in collecting several signals and turning them into a clearer risk decision.
+
 ## What this project does
 
 Malicious URL Detector combines lexical URL signals, network context, certificate checks, machine-learning inference, optional external threat intelligence, and rule-based risk aggregation into one interactive analysis flow.
-
-The repository is designed as an educational and defensive security project: enter a URL, collect evidence, classify the risk, and produce a human-readable verdict rather than relying on a single opaque signal.
 
 <p align="center"><img src="assets/readme/pipeline.svg" alt="URL analysis pipeline" width="100%"></p>
 
@@ -26,8 +39,6 @@ The repository is designed as an educational and defensive security project: ent
 </table>
 
 ## Architecture
-
-The documented analysis path is:
 
 ```text
 User URL
@@ -51,8 +62,6 @@ Threat classification -> risk scoring -> final verdict
    +------> display/reporting
    +------> local logging/storage
 ```
-
-This layered design is useful for studying how heuristic, contextual and ML signals can complement one another in a defensive workflow.
 
 ## Verdict model
 
@@ -100,7 +109,7 @@ Core dependencies include `pandas`, `numpy`, `scikit-learn`, `xgboost`, `tldextr
 
 ## Interactive workflow
 
-Run `python url_detector.py`, then provide a URL for analysis. The project also documents commands for viewing statistics, supported threat types, recent findings, help, and exit behavior.
+Run `python url_detector.py`, then provide a URL for analysis. The project also supports commands for viewing statistics, supported threat types, recent findings, help, and exit behavior.
 
 When external intelligence is enabled, keep API credentials outside source control. Do not hard-code secrets into `url_detector.py`, notebooks, datasets, examples, or documentation.
 
@@ -119,13 +128,15 @@ The repository includes compact sample datasets and curated suspicious-link list
 
 ## Extending the detector
 
-Useful directions for contributors include adding stronger feature provenance, reproducible train/evaluation scripts, calibration metrics, richer explainability, URL redirection-chain analysis, safer network sandboxing, model/version manifests, and automated regression tests for known benign and malicious samples.
+Useful directions include stronger feature provenance, reproducible train/evaluation scripts, calibration metrics, explainability, redirect-chain analysis, safer network sandboxing, model/version manifests, and automated regression tests for known benign and malicious samples.
 
-## Discoverability keywords
-
-Recommended GitHub topics for this repository:
+## Topics and tags
 
 `cybersecurity` · `malicious-url-detection` · `phishing-detection` · `machine-learning` · `xgboost` · `threat-intelligence` · `url-analysis` · `python` · `security-tools` · `phishing` · `network-security`
+
+## Suggested GitHub About description
+
+> Machine-learning-assisted malicious URL checker that combines URL, SSL, IP and threat-intelligence signals to help users identify suspicious and phishing links.
 
 ## Responsible use
 
