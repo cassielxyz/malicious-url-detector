@@ -1,273 +1,135 @@
-# 🔒 Enhanced Malicious URL Detection System 2025
+<p align="center"><img src="assets/readme/hero.svg" alt="Malicious URL Detector banner" width="100%"></p>
 
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Security](https://img.shields.io/badge/security-cybersecurity-red.svg)](https://github.com/cassielxyz/malicious-url-detector)
+<p align="center"><strong>Machine-learning-assisted URL threat analysis for security learning, research, and defensive triage.</strong></p>
 
-A comprehensive cybersecurity tool that uses advanced machine learning, IP analysis, and real-time threat intelligence to detect and classify malicious URLs with high accuracy.
+<p align="center"><code>Python</code> · <code>XGBoost</code> · <code>scikit-learn</code> · <code>tldextract</code> · <code>VirusTotal integration</code> · <code>SSL / IP signals</code></p>
 
-## 📁 Project Structure
+<p align="center"><img src="assets/readme/divider.svg" width="100%" alt="divider"></p>
 
+## What this project does
+
+Malicious URL Detector combines lexical URL signals, network context, certificate checks, machine-learning inference, optional external threat intelligence, and rule-based risk aggregation into one interactive analysis flow.
+
+The repository is designed as an educational and defensive security project: enter a URL, collect evidence, classify the risk, and produce a human-readable verdict rather than relying on a single opaque signal.
+
+<p align="center"><img src="assets/readme/pipeline.svg" alt="URL analysis pipeline" width="100%"></p>
+
+## Detection layers
+
+<table>
+<tr>
+<td width="25%" valign="top"><img src="assets/readme/icon-scan.svg" width="38"><br><strong>URL & network inspection</strong><br>Validation, normalization, reachability, IP context and SSL checks.</td>
+<td width="25%" valign="top"><img src="assets/readme/icon-ml.svg" width="38"><br><strong>Feature-driven ML</strong><br>50+ extracted signals feed the XGBoost-based classification layer.</td>
+<td width="25%" valign="top"><img src="assets/readme/icon-intel.svg" width="38"><br><strong>Threat intelligence</strong><br>VirusTotal integration can provide an additional multi-engine signal when configured.</td>
+<td width="25%" valign="top"><img src="assets/readme/icon-report.svg" width="38"><br><strong>Verdict & evidence</strong><br>Risk scoring, malware-type classification, CLI output and CSV-oriented logging.</td>
+</tr>
+</table>
+
+## Architecture
+
+The documented analysis path is:
+
+```text
+User URL
+   |
+   v
+Validation & sanitization
+   |
+   v
+Reachability + SSL verification
+   |
+   v
+50+ feature extraction
+   |
+   +------> XGBoost classifier
+   |
+   +------> VirusTotal signal (optional/configured)
+   |
+   v
+Threat classification -> risk scoring -> final verdict
+   |
+   +------> display/reporting
+   +------> local logging/storage
+```
+
+This layered design is useful for studying how heuristic, contextual and ML signals can complement one another in a defensive workflow.
+
+## Verdict model
+
+The CLI can communicate progressive risk states such as `SAFE`, `QUESTIONABLE`, `SUSPICIOUS`, `HIGH_RISK`, and `MALICIOUS`. Treat these as decision-support outputs, not as a guarantee that a URL is safe or harmful.
+
+## Repository map
+
+```text
 malicious-url-detector/
-├── url_detector.py (86KB)           # 🚀 Main script
-├── requirements.txt                 # 📦 Dependencies  
-├── README.md                        # 📖 Documentation
-├── .gitignore                       # 🚫 Git rules
-├── maliciouslinks.csv               # 📊 Results log
-├── organize.bat                     # 🔧 Organizer script
-├── data/                           # 📂 Training datasets
-│   ├── comprehensive_training.csv
-│   ├── sample_dataset.csv
-│   └── training_sample.csv
-├── docs/                           # 📚 Documentation
-│   └── additional_docs.md
-├── scripts/                        # 🛠️ Utility scripts
-│   ├── setup.py
-│   └── test.py
-├── logs/                           # 📋 Log files
-│   └── debug.log
-├── models/                         # 🤖 ML models
-│   └── xgboost_model.json
-├── notebooks/                      # 📓 Jupyter notebooks
-│   └── malicious_url_analysis.ipynb
-├── output/                         # 📤 Generated outputs
-└── malicious links/                # 🦠 Known malicious URLs
-    ├── banking_phishing.txt
-    ├── ip_based_urls.txt
-    ├── mixed_suspicious.txt
-    ├── tech_impersonation.txt
-    └── url_shorteners.txt
+├─ url_detector.py             main detector and interactive flow
+├─ Architecture.txt            reference pipeline
+├─ requirements.txt            Python dependencies
+├─ data/                       small training/sample datasets
+├─ malicious links/            curated suspicious URL examples
+├─ notebooks/                  analysis workspace
+├─ assets/readme/              custom README visual system
+└─ organize.bat                repository utility script
+```
 
+## Quick start
 
-
-## 🎯 Key Features
-
-- ✅ **8-Stage Analysis Pipeline** - Comprehensive URL evaluation
-- ✅ **Advanced IP Detection** - Private/Public/Suspicious range analysis
-- ✅ **8 Malware Types** - Phishing, Malware, Crypto scams, etc.
-- ✅ **XGBoost ML Model** - 50+ features, 85%+ accuracy
-- ✅ **VirusTotal Integration** - Real-time multi-engine scanning
-- ✅ **SSL Certificate Validation** - Security verification
-- ✅ **CSV Logging** - Comprehensive threat intelligence storage
-- ✅ **Interactive CLI** - User-friendly command interface
-..................................................
-## 🚀 Installation & Setup
-
-### **Step 1: Clone the Repository**
-
+```bash
 git clone https://github.com/cassielxyz/malicious-url-detector.git
 cd malicious-url-detector
+python -m venv .venv
+```
 
+Windows:
 
-..................................................
-### **Step 2: Create Virtual Environment**
-
-**Windows:**
-python -m venv venv
-venv\Scripts\activate
-
-.................................................
-
-**Linux/Mac:**
-python3 -m venv venv
-source venv/bin/activate
-
-
-................................................
-### **Step 3: Install Dependencies**
-
-pip install --upgrade pip
+```powershell
+.\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
-
-###############################################
-
-**Required packages:**
-- pandas
-- numpy
-- validators
-- requests
-- scikit-learn
-- xgboost
-##############################################
-
-
-
-
-## 🖥️ How to Run the Program
-
-### **Step 1: Start the Detector**
-
 python url_detector.py
+```
 
-text
+Linux / macOS:
 
-### **Step 2: Interactive Commands**
+```bash
+source .venv/bin/activate
+pip install -r requirements.txt
+python url_detector.py
+```
 
-The system provides several commands:
+Core dependencies include `pandas`, `numpy`, `scikit-learn`, `xgboost`, `tldextract`, `requests`, `validators`, `beautifulsoup4`, and `joblib`.
 
-🔗 Enter URL for complete comprehensive analysis: [your_url]
+## Interactive workflow
 
-text
+Run `python url_detector.py`, then provide a URL for analysis. The project also documents commands for viewing statistics, supported threat types, recent findings, help, and exit behavior.
 
-**Available Commands:**
-- **URL Analysis** - Enter any URL (e.g., `http://suspicious-site.com`)
-- **`stats`** - View detection statistics and trends
-- **`types`** - Show supported malware types
-- **`recent`** - Display recent malicious URLs found
-- **`help`** - Show detailed help information
-- **`quit`** - Exit the program
+When external intelligence is enabled, keep API credentials outside source control. Do not hard-code secrets into `url_detector.py`, notebooks, datasets, examples, or documentation.
 
-### **Step 3: Analysis Process**
+## Security boundaries
 
-When you enter a URL, the system performs:
+- A URL classified as safe can still become malicious later.
+- Network requests to untrusted destinations should be treated as hostile input.
+- External API results are signals, not authoritative truth.
+- Never execute downloaded content as part of URL analysis.
+- Keep API keys in local environment configuration and rotate any credential that has ever been published.
+- Use this project only against URLs and infrastructure you are authorized to test.
 
-1. **📋 URL Validation** - Format checking and normalization
-2. **🌐 Internet Accessibility** - Connectivity and response testing
-3. **🔒 SSL Certificate Verification** - Security certificate validation
-4. **🤖 Machine Learning Analysis** - AI-powered threat detection
-5. **🧑‍💻 VirusTotal Verification** - Multi-engine scanning
-6. **🦠 Malware Type Classification** - Threat categorization
-7. **⚖️ Final Verdict Calculation** - Risk score aggregation
-8. **💾 Comprehensive Storage** - Data logging and statistics
+## Data and model notes
 
-### **Step 4: Understanding Results**
+The repository includes compact sample datasets and curated suspicious-link lists for experimentation. Model quality depends on dataset quality, feature drift, class balance, adversarial adaptation, and the environment in which the detector is evaluated. Report measured results with the dataset split and test conditions rather than treating a single accuracy number as universal.
 
-**Verdict Types:**
-- ✅ **SAFE** - URL appears legitimate
-- ❓ **QUESTIONABLE** - Minor suspicious indicators
-- ⚠️ **SUSPICIOUS** - Multiple risk factors detected
-- 🚨 **HIGH_RISK** - Significant threat indicators
-- ☠️ **MALICIOUS** - Confirmed malicious URL
+## Extending the detector
 
-**Example Output:**
-🏷️ FINAL VERDICT: ☠️ MALICIOUS
+Useful directions for contributors include adding stronger feature provenance, reproducible train/evaluation scripts, calibration metrics, richer explainability, URL redirection-chain analysis, safer network sandboxing, model/version manifests, and automated regression tests for known benign and malicious samples.
 
-🦠 COMPREHENSIVE MALWARE CLASSIFICATION:
-Type: PHISHING
-Risk Level: HIGH
-Confidence: 87.3%
-Description: Credential stealing, fake login pages
+## Discoverability keywords
 
-🌐 IP ADDRESS ANALYSIS:
-IP Address: 192.168.1.100
-IP Type: PRIVATE_IP
-IP Risk Score: 70/100
+Recommended GitHub topics for this repository:
 
-🤖 ADVANCED MACHINE LEARNING ANALYSIS:
-Prediction: Malicious
-Confidence: 89.2%
-Malicious Probability: 89.2%
+`cybersecurity` · `malicious-url-detection` · `phishing-detection` · `machine-learning` · `xgboost` · `threat-intelligence` · `url-analysis` · `python` · `security-tools` · `phishing` · `network-security`
 
-text
+## Responsible use
 
-## 📊 Data Storage
+This project is intended for education, research, security awareness, and authorized defensive analysis. Do not use it to probe systems you do not own or have permission to assess.
 
-### **Malicious URLs CSV**
-All detected threats are logged in `maliciouslinks.csv` with:
-- Timestamp and URL
-- ML prediction confidence
-- VirusTotal results  
-- Malware type classification
-- IP analysis details
-- Risk scoring metrics
-
-### **Statistics Dashboard**
-Use the `stats` command to view:
-- Total URLs analyzed
-- Detection trends
-- Malware type distribution
-- IP-based threat percentage
-- SSL certificate statistics
-
-## 🎯 Usage Examples
-
-### **Example 1: Analyze a Suspicious URL**
-🔗 Enter URL: http://192.168.1.1/admin
-
-text
-
-### **Example 2: Check Statistics**
-🔗 Enter URL: stats
-📊 Complete Statistics:
-Total stored: 15
-IP-based threats: 8 (53.3%)
-SSL secured: 40.0%
-Malware types: {'PHISHING': 5, 'ADMIN_PANEL': 3}
-
-text
-
-### **Example 3: View Recent Threats**
-🔗 Enter URL: recent
-📋 Recent 5 Comprehensive Analysis Results:
-🕒 2025-08-05 00:15:30 | 🌐🔓 http://192.168.1.100/login... | MALICIOUS | ADMIN_PANEL | TL:HIGH
-
-text
-
-## 🛡️ Security Recommendations
-
-Based on analysis results, the system provides specific recommendations:
-
-### **For MALICIOUS URLs:**
-- 🚫 Do not visit or interact with the URL
-- 📧 Report to security services (PhishTank, Google Safe Browsing)
-- ⚠️ Warn colleagues if received via email
-- 🔒 Change passwords if credentials were entered
-
-### **For SUSPICIOUS URLs:**
-- ✅ Verify legitimacy through official channels
-- 🔍 Check for typosquatting in domain name
-- 🛡️ Use additional security tools before visiting
-
-## 🔧 Troubleshooting
-
-### **Common Issues:**
-
-1. **VirusTotal API Errors:**
-❌ VirusTotal initialization failed
-
-text
-**Solution:** Check your API key is correctly set
-
-2. **Import Errors:**
-ModuleNotFoundError: No module named 'xgboost'
-
-text
-**Solution:** Run `pip install -r requirements.txt`
-
-3. **Permission Errors:**
-PermissionError: [Errno 13] Permission denied: 'maliciouslinks.csv'
-
-text
-**Solution:** Close any open CSV files and restart
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/improvement`)
-3. Commit changes (`git commit -m 'Add new feature'`)
-4. Push to branch (`git push origin feature/improvement`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 👥 Support
-
-- **GitHub Issues:** [Report bugs or request features](https://github.com/cassielxyz/malicious-url-detector/issues)
-- **Email:** For security-related inquiries
-- **Documentation:** Check the `docs/` folder for additional guides
-
-## 🎓 Educational Use
-
-This tool is perfect for:
-- **Cybersecurity Training** - Learn threat detection techniques
-- **Academic Research** - Study malicious URL patterns
-- **Security Awareness** - Demonstrate web-based threats
-- **Professional Development** - Understand ML-based security
-
----
-
-**⚠️ Disclaimer:** This tool is for educational and legitimate security purposes only. Users are responsible for complying with applicable laws and ethical guidelines.
-
-**🔒 Built for cybersecurity professionals, researchers, and organizations serious about web-based threat detection.**
+<p align="center"><img src="assets/readme/mark.svg" width="58" alt="project mark"></p>
+<p align="center"><sub>Built as a practical bridge between machine learning and defensive URL analysis.</sub></p>
